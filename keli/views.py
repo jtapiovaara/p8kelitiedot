@@ -53,6 +53,7 @@ def city(request):
             'city': city,
             'temperature': r['main']['temp'],
             'feels_like': r['main']['feels_like'],
+            'pressure': r['main']['pressure'],
             'speed': r['wind']['speed'],
             'description': r['weather'][0]['description'],
             'icon': r['weather'][0]['icon'],

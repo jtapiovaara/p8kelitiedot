@@ -52,7 +52,7 @@
     </section>
     <section class="section">
         <div class="container">
-            <div class="columns">
+            <div class="column">
                 <div class="column is-offset-4 is-4">
                     {% for city in weather_data  %}
                     <div class="box shadow">
@@ -70,6 +70,9 @@
                                         <span class="subtitle">{{ city.temperature }}  feels like {{ city.feels_like }}</span>
                                         <br> Tuulen nopeus {{ city.speed }} m/s
                                         <br> {{ city.description }}
+                                        <small>
+                                            <br> Ilmanpaine {{ city.pressure }}
+                                        </small>
                                     </p>
                                 </div>
                             </div>
