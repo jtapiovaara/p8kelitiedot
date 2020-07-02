@@ -9,6 +9,9 @@ from .forms import CityForm
 
 
 def city(request):
+    """Haetaan OpenWeatherMap tietoja eri kaupunkeihin. Kaupunkeja voi lisätä ja poistaa. Lisäksi esitetään Uudenmaan
+    alueen neljän viimeisen tunnin sadetilanne Ilmailulaitoksen sääkartalla. Kaupunkikoodi 200 tunnistaaj,jos
+    paikka on ylipäätään olemassa."""
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID=88b98c1b6cdea2bfed07ed9333ba3790'
     # url = 'http://api.openweathermap.org/data/2.5/forecast?id=658225&units=metric&APPID=88b98c1b6cdea2bfed07ed9333ba3790'
 
@@ -68,7 +71,7 @@ def city(request):
     weather_map_moment_2 = datetime.datetime.now() - timedelta(hours=4)
     weather_map_moment_3 = datetime.datetime.now() - timedelta(hours=5)
     weather_map_moment_4 = datetime.datetime.now() - timedelta(hours=6)
-    print(str(weather_map_moment_1))
+    # print(str(weather_map_moment_1))
     context = {
         'moment1': weather_map_moment_1,
         'moment2': weather_map_moment_2,
