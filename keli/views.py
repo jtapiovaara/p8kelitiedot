@@ -6,14 +6,15 @@ from django.contrib import messages
 
 from .models import City
 from .forms import CityForm
+from kelitiedot.ei_gittiin import APPID
 
 
 def city(request):
     """Haetaan OpenWeatherMap tietoja eri kaupunkeihin. Kaupunkeja voi lisätä ja poistaa. Lisäksi esitetään Uudenmaan
-    alueen neljän viimeisen tunnin sadetilanne Ilmailulaitoksen sääkartalla. Kaupunkikoodi 200 tunnistaaj,jos
+    alueen neljän viimeisen tunnin sadetilanne Ilmailulaitoksen sääkartalla. Kaupunkikoodi 200 tunnistaa,jos
     paikka on ylipäätään olemassa."""
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID=88b98c1b6cdea2bfed07ed9333ba3790'
-    # url = 'http://api.openweathermap.org/data/2.5/forecast?id=658225&units=metric&APPID=88b98c1b6cdea2bfed07ed9333ba3790'
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID='+APPID
+    # url = 'http://api.openweathermap.org/data/2.5/forecast?id=658225&units=metric&APPID='+APPID
 
     err_msg = ''
     message = ''
@@ -27,7 +28,7 @@ def city(request):
 
             if existing_city_count == 0:
                 r = requests.get(url.format(new_city)).json()
-                print(r)
+                # print(r)
 
                 if r['cod'] == 200:
                     form.save()
@@ -68,10 +69,13 @@ def city(request):
         weather_data.append(city_weather)
 
     weather_map_moment_1 = datetime.datetime.now() - timedelta(hours=3)
-    weather_map_moment_2 = datetime.datetime.now() - timedelta(hours=4)
-    weather_map_moment_3 = datetime.datetime.now() - timedelta(hours=5)
-    weather_map_moment_4 = datetime.datetime.now() - timedelta(hours=6)
-    # print(str(weather_map_moment_1))
+    weather_map_moment_2 = datetime.datetime.now() - timedelta(hours=3.5)
+    weather_map_moment_3 = datetime.datetime.now() - timedelta(hours=4)
+    weather_map_moment_4 = datetime.datetime.now() - timedelta(hours=4.5)
+    print(str(weather_map_moment_4))
+    print(str(weather_map_moment_3))
+    print(str(weather_map_moment_2))
+    print(str(weather_map_moment_1))
     context = {
         'moment1': weather_map_moment_1,
         'moment2': weather_map_moment_2,
